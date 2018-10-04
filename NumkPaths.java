@@ -31,9 +31,9 @@ public class NumkPaths {
 		queryStr.append("prefix dbpedia: <http://dbpedia.org/resource/>\n");
 		queryStr.append("prefix dbp: <http://dbpedia.org/page/>\n");
 		queryStr.append("prefix :<urn:ex>\n");
-		queryStr.append("select ?start ?u ?v ?end \nwhere{ \n{?start (<>|!<>)* ?u . \n ?u (:relatedTo) ?v . \nfilter(!isBlank(?u))\n}\nUNION\n{\n?v (<>|!<>)* ?end .\nfilter(!isBlank(?v))\n}\n }\nlimit "+k+" \nvalues (?start ?end){( :"+start+" :"+end+")}") ;
+		queryStr.append("select ?start ?u ?v ?end \nwhere{ \n{?start (<>|!<>)* ?u . \n ?u (:relatedTo) ?v . \nfilter(!isBlank(?u))\n}\nOPTIONAL\n{\n?v (<>|!<>)* ?end .\nfilter(!isBlank(?v))\n}\n }\nlimit "+k+" \nvalues (?start ?end){( :"+start+" :"+end+")}") ;
 		Query q = queryStr.asQuery();
-		System.out.println(q.toString());
+		//System.out.println(q.toString());
 		QueryExecution qx=QueryExecutionFactory.sparqlService("http://dbpedia.org/sparql/", q);
 		ResultSet rs=qx.execSelect();
 		ResultSetFormatter.out(rs);
