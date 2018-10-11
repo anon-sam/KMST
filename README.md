@@ -1,2 +1,3 @@
 # KMST
-Add the lib folder to the build path to resolve compile errors, if i remember
+1. hetesim
+2. path constrained random walk
